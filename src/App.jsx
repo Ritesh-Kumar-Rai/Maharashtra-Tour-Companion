@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import Header from './components/Header'
+import SearchContainer from './components/SearchContainer'
 
 function App() {
 
@@ -18,7 +19,9 @@ function App() {
             </button>
           </div>
         </div>
-        <h1 className='text-4xl text-center text-amber-700'>Lorem ipsum dolor sit.</h1>
+        {/* <h1 className='text-4xl text-center text-amber-700'>Lorem ipsum dolor sit.</h1> */}
+        <hr className='my-10 border-gray-200 dark:border-gray-900' />
+        <SearchContainer />
       </main>
       <footer className="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-100 py-6 px-6 text-center text-sm">
         <div className="mb-2">Made with ❤️ by Ritesh – solving real problems</div>
