@@ -2,13 +2,14 @@ import { useState } from 'react'
 import './App.css'
 import Header from './components/Header'
 import SearchContainer from './components/SearchContainer'
+import ExploreCategories from './components/ExploreCategories'
 
 function App() {
 
   return (
     <>
       <Header />
-      <main className='h-screen p-4 dark:bg-gray-800 scroll-smooth'>
+      <main className='min-h-screen p-4 dark:bg-gray-800 scroll-smooth'>
         <div className="banner shadow-2xl">
           <img src="https://images.unsplash.com/photo-1744522509591-59ba4adeb658?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="maharashtra banner image" />
           <div className='w-full h-full flex flex-col justify-center items-center backdrop-blur-xs hover:backdrop-blur-none transition-all duration-300 z-1'>
@@ -22,6 +23,7 @@ function App() {
         {/* <h1 className='text-4xl text-center text-amber-700'>Lorem ipsum dolor sit.</h1> */}
         <hr className='my-10 border-gray-200 dark:border-gray-900' />
         <SearchContainer />
+        <ExploreCategories />
       </main>
       <footer className="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-100 py-6 px-6 text-center text-sm">
         <div className="mb-2">Made with ❤️ by Ritesh – solving real problems</div>
