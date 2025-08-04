@@ -16,7 +16,7 @@ function Header() {
     }, [isDarkThemed]);
 
     return (
-        <header className='w-full max-w-screen bg-transparent dark:bg-gray-800 backdrop-blur-md sticky top-0 shadow-md border-b-2 border-transparent dark:border-slate-600 z-10'>
+        <header className='w-full max-w-screen dark:bg-gray-800 backdrop-blur-md sticky top-0 shadow-md border-b-2 border-transparent dark:border-slate-600 z-10'>
             <div className='w-full flex items-center justify-between gap-20 p-2 md:p-4'>
                 {/* logo */}
                 <div className="logo min-w-[200px]">
@@ -52,7 +52,7 @@ function Header() {
 
                         <ThemeSwitcher theme={{ isDarkThemed, setIsDarkThemed }} />
 
-                        <button type='button' className='px-4 py-1 border-0 bg-amber-500 hover:bg-amber-400 outline-2 outline-transparent active:outline-orange-600 dark:active:outline-orange-500 transition-outline  duration-300 ease-in-out text-white font-bold rounded-md flex items-center justify-center w-full md:w-auto'>Login</button>
+                        <button type='button' className='px-4 py-1 border-0 bg-amber-500 hover:bg-amber-400 outline-2 outline-transparent active:outline-orange-600 dark:active:outline-orange-500 transition-outline  duration-300 ease-in-out text-white font-medium rounded-md flex items-center justify-center w-full md:w-auto'>Login</button>
                     </div>
                 </div>
 
