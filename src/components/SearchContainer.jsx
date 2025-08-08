@@ -13,7 +13,7 @@ const SearchContainer = () => {
 
     return (
         <div className="search-container my-5 w-full p-5">
-            <div className="search-box w-full min-h-20 border-0 rounded-4xl grid grid-cols-12 p-2">
+            <div className="search-box w-full min-h-20 border-0 rounded-3xl grid grid-cols-12 p-2">
                 {/* search-bar */}
                 <div className='col-start-1 col-end-3 hover:bg-gray-200 dark:hover:bg-gray-700 hover:rounded-3xl hover:border-0 flex items-start justify-center flex-col p-2 border-r-2 border-gray-200 dark:border-gray-800 transition-all duration-200'>
                     <label htmlFor="search-input" className='font-medium cursor-pointer my-2'>Where</label>
