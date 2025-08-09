@@ -3,7 +3,8 @@ import './App.css'
 import Header from './components/Header'
 import { Route, Routes } from 'react-router'
 import Home from './pages/Home'
-import Notices from './pages/Notices'
+import Notices from './pages/Notices';
+import PageNotFound from './pages/PageNotFound';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/notices' element={<Notices />} />
+          <Route path='/*' element={<PageNotFound />} />
         </Routes>
       </main>
       <footer className="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-100 py-6 px-6 text-center text-sm">
