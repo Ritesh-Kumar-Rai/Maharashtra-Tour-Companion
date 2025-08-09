@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import logo from '../assets/logoipsum-custom-logo.svg';
 import { AiOutlineGlobal } from "react-icons/ai";
 import ThemeSwitcher from './themeSwitcher';
+import { NavLink } from 'react-router';
 
 function Header() {
 
@@ -27,13 +28,13 @@ function Header() {
                 <div className={`md:flex absolute bg-slate-300 dark:bg-slate-700 p-5 md:p-0 top-15 w-full ${isMenuOpen ? 'right-0' : 'right-[-100%]'} md:static md:bg-transparent md:dark:bg-transparent md:w-[70%] items-center justify-end 2xl:justify-between gap-15 transition-right duration-500 z-100`}>
                     <nav className={`static md:absolute md:bg-slate-300 md:dark:bg-slate-700 ${isMenuOpen ? 'right-0' : 'right-[-100%]'} top-20 lg:w-[50%] sm:w-full md:p-5 2xl:static 2xl:bg-transparent 2xl:dark:bg-transparent 2xl:w-full z-100 transition-right duration-500`}>
                         <ul className='flex items-center flex-col 2xl:flex-row text-md gap-5'>
-                            <li><a className='text-gray-700 transition hover:text-amber-900 dark:text-white dark:hover:text-white/75 active' href="#">Home</a></li>
-                            <li><a className='text-gray-700 transition hover:text-amber-900 dark:text-white dark:hover:text-white/75' href="#">Explore</a></li>
-                            <li><a className='text-gray-700 transition hover:text-amber-900 dark:text-white dark:hover:text-white/75' href="#">Hospitality</a></li>
-                            <li><a className='text-gray-700 transition hover:text-amber-900 dark:text-white dark:hover:text-white/75' href="#">Safety & Utilities</a></li>
-                            <li><a className='text-gray-700 transition hover:text-amber-900 dark:text-white dark:hover:text-white/75' href="#">Notices</a></li>
-                            <li><a className='text-gray-700 transition hover:text-amber-900 dark:text-white dark:hover:text-white/75' href="#">About Us</a></li>
-                            <li><a className='text-gray-700 transition hover:text-amber-900 dark:text-white dark:hover:text-white/75' href="#">Saved Places</a></li>
+                            <li><NavLink to={'/'} className={({ isActive }) => `text-gray-700 transition hover:text-amber-900 dark:text-white dark:hover:text-white/75 ${isActive && 'active'}`}>Home</NavLink></li>
+                            <li><NavLink to={'/explore'} className={({ isActive }) => `text-gray-700 transition hover:text-amber-900 dark:text-white dark:hover:text-white/75 ${isActive && 'active'}`} >Explore</NavLink></li>
+                            <li><NavLink to={'/hospitality'} className={({ isActive }) => `text-gray-700 transition hover:text-amber-900 dark:text-white dark:hover:text-white/75 ${isActive && 'active'}`} >Hospitality</NavLink></li>
+                            <li><NavLink to={'/safety&utilities'} className={({ isActive }) => `text-gray-700 transition hover:text-amber-900 dark:text-white dark:hover:text-white/75 ${isActive && 'active'}`} >Safety & Utilities</NavLink></li>
+                            <li><NavLink to={'/notices'} className={({ isActive }) => `text-gray-700 transition hover:text-amber-900 dark:text-white dark:hover:text-white/75 ${isActive && 'active'}`} >Notices</NavLink></li>
+                            <li><NavLink to={'/about-us'} className={({ isActive }) => `text-gray-700 transition hover:text-amber-900 dark:text-white dark:hover:text-white/75 ${isActive && 'active'}`} >About Us</NavLink></li>
+                            <li><NavLink to={'/saved-places'} className={({ isActive }) => `text-gray-700 transition hover:text-amber-900 dark:text-white dark:hover:text-white/75 ${isActive && 'active'}`} >Saved Places</NavLink></li>
                         </ul>
                     </nav>
                     {/* language, theme and login element */}
