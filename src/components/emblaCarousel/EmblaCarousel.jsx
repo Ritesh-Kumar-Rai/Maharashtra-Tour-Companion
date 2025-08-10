@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import {
     NextButton,
@@ -7,6 +7,7 @@ import {
 } from './EmblaCarouselArrowButtons';
 
 import { DotButton, useDotButton } from './EmblaCarouselDotButtons';
+import { LazyLoadImage } from './EmblaCarouselLazyLoadingImage';
 
 import "./base.css";
 import "./embla.css";
@@ -18,6 +19,8 @@ const EmblaCarousel = (props) => {
     const [emblaRef, emblaApi] = useEmblaCarousel(options)
     const tweenFactor = useRef(0)
     const tweenNodes = useRef([])
+
+    const [slidesInView, setSlidesInView] = useState([]); // for lazy loading
 
     const { selectedIndex, scrollSnaps, onDotButtonClick } =
         useDotButton(emblaApi)
@@ -76,8 +79,24 @@ const EmblaCarousel = (props) => {
         })
     }, [])
 
+    // for lazy loading
+    const updateSlidesInView = useCallback((emblaApi) => {
+        setSlidesInView((slidesInView) => {
+            if (slidesInView.length === emblaApi.slideNodes().length) {
+                emblaApi.off('slidesInView', updateSlidesInView)
+            }
+            const inView = emblaApi
+                .slidesInView()
+                .filter((index) => !slidesInView.includes(index))
+            return slidesInView.concat(inView)
+        })
+    }, []);
+    // ended the function for lazy loading feature
+
     useEffect(() => {
         if (!emblaApi) return
+
+        updateSlidesInView(emblaApi); // for lazy loading
 
         setTweenNodes(emblaApi)
         setTweenFactor(emblaApi)
@@ -99,14 +118,22 @@ const EmblaCarousel = (props) => {
                     {slides.map((index) => (
                         <div className="embla__slide" key={index}>
                             <div className="embla__parallax">
-                                <div className="embla__parallax__layer">
-                                    <img
+                                {/* <div className="embla__parallax__layer"> */} {/* This div's classname was migrated and used in LazyLoadImage div as classname, in future any problem occurred to this parallex effect due to divs setting then try to uncomment this div and remove this classname from LazyLoadImage first div */}
+                                {/* <img
                                         className="embla__slide__img embla__parallax__img"
                                         src={`https://picsum.photos/1920/1080?v=${index}`}
                                         alt="Your alt text"
                                         loading='lazy'
-                                    />
-                                </div>
+                                    /> */}
+                                {/* lazy loading component */}
+                                <LazyLoadImage
+                                    key={index}
+                                    index={index}
+                                    imgSrc={`https://picsum.photos/1920/1080?v=${index}`}
+                                    inView={slidesInView.indexOf(index) > -1}
+                                />
+                                {/* lazy loading component ended*/}
+                                {/* </div> */}
                             </div>
                         </div>
                     ))}
