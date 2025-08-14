@@ -80,7 +80,7 @@ const FilteredBadge = ({ filter_name = {}, onClickHandler = () => { throw new Re
             <p className="text-sm whitespace-nowrap"><b>{filter_name?.type || "Error:"}:</b> {filter_name?.name || "filter not received!"}</p>
 
             <button
-                className="ms-1.5 -me-1 inline-block rounded-full bg-red-300 p-0.5 transition hover:bg-red-500 active:bg-red-500"
+                className="ms-1.5 -me-1 inline-block rounded-full bg-red-300 dark:bg-red-400 p-0.5 transition hover:bg-red-500 active:bg-red-500"
                 onClick={onClickHandler}
             >
                 <span className="sr-only">Remove badge</span>
@@ -121,7 +121,7 @@ const SearchContainer = ({ isFilterRequired = false }) => {
 
                 return (
                     <div className="search-container my-5 w-full md:p-5">
-                        <div className='w-full min-h-20 border-0 rounded-3xl flex items-center justify-end md:justify-between flex-wrap gap-2'>
+                        <div className='w-full min-h-20 border-0 rounded-3xl flex items-center justify-end flex-wrap md:flex-nowrap gap-2'>
                             {/* Search Bar */}
                             <div className='hover:bg-gray-200 dark:hover:bg-gray-700 hover:rounded-3xl flex items-start justify-center flex-col py-1 px-2 md:py-2 md:px-3 w-full dark:text-white'>
                                 <SearchBar id_for_input='search-bar-input' labelName='Where' placeholderName='Search Places...' custom_tailwind_style='p-2 outline-0 text-lg' />
@@ -131,7 +131,7 @@ const SearchContainer = ({ isFilterRequired = false }) => {
                                     type='button'
                                     className='flex items-center justify-center gap-1 space-x-2 rounded-md px-3 h-8 text-sm font-bold border bg-white shadow-xs transition-all hover:bg-gray-100 hover:text-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border-gray-300 dark:bg-gray-800 dark:border-slate-500 dark:hover:bg-gray-700 dark:text-white dark:hover:text-gray-200 active:scale-90 duration-200'
                                 >
-                                    <CiFilter fontSize={19} fontWeight={'bold'} /> {/* icon size controlled via class */}
+                                    <CiFilter fontSize={19} fontWeight={'bold'} strokeWidth={1.1} /> {/* icon size controlled via class */}
                                     Filters
                                 </button>
                             </div>
