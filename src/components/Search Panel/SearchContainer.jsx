@@ -3,6 +3,7 @@ import { IoIosClose } from "react-icons/io";
 import ModalForNavORMenuBars from './ModalForNavORMenuBars';
 import { FaSearch } from "react-icons/fa";
 import { CiFilter } from "react-icons/ci";
+import FilterSidebar from './FilterSidebar';
 
 // Sub-components which will use in SearchContainer
 const SearchBar = ({ id_for_input = "id_for_labelInput_Binding", labelName = 'Search Places', placeholderName = "", custom_tailwind_style = '' }) => { // will expect value and onChange as params
@@ -14,22 +15,22 @@ const SearchBar = ({ id_for_input = "id_for_labelInput_Binding", labelName = 'Se
     );
 };
 
-const DateInput = ({ id_for_input = "id_for_labelInput_Binding", labelName = "Check in" }) => { // will expect value and onChange as params
+export const DateInput = ({ id_for_input = "id_for_labelInput_Binding", labelName = "Check in", custom_tailwind_style = '' }) => { // will expect value and onChange as params
     return (
         <>
             <label htmlFor={id_for_input} className='font-medium cursor-pointer my-2'>{labelName}</label>
-            <input type="date" name="" className='w-full border-0 focus:outline-slate-500 dark:focus:outline-amber-500 dark:text-white' id={id_for_input} autoComplete='off' />
+            <input type="date" name="" className={`w-full border-0 focus:outline-slate-500 dark:focus:outline-amber-500 dark:text-white ${custom_tailwind_style}`} id={id_for_input} autoComplete='off' />
         </>
     );
 };
 
 // will expect value and onChange as params
-const AddGuests = ({ handleGuestModal = () => { throw new ReferenceError("handleGuestModal() Expected as parameter but didn't got it!") }, isGuestModalOpened = false, setIsGuestModalOpened = () => { throw new ReferenceError("setIsGuestModalOpened() Expected as parameter but didn't got it!") } }) => {
+export const AddGuests = ({ handleGuestModal = () => { throw new ReferenceError("handleGuestModal() Expected as parameter but didn't got it!"); }, isGuestModalOpened = false, setIsGuestModalOpened = () => { throw new ReferenceError("setIsGuestModalOpened() Expected as parameter but didn't got it!"); }, custom_tailwind_style = '' }) => {
     return (
         <>
             <label className='font-medium cursor-pointer my-2' onClick={handleGuestModal}>Who</label>
             <div className='w-full flex items-center justify-between gap-0.5 relative'>
-                <input type="text" placeholder='Add guests' className='w-[80%] border-0 focus:outline-slate-500 dark:focus:outline-amber-500 dark:text-white' id="guest-input" autoComplete='off' onClick={handleGuestModal} readOnly />
+                <input type="text" placeholder='Add guests' className={`w-[80%] border-0 focus:outline-slate-500 dark:focus:outline-amber-500 dark:text-white ${custom_tailwind_style}`} id="guest-input" autoComplete='off' onClick={handleGuestModal} readOnly />
                 <IoIosClose className={`w-[20%] max-w-[49px] cursor-pointer bg-slate-300 dark:bg-slate-800 rounded-full transition-all active:scale-90`} size={28} />
 
                 {/* modal here */}
@@ -39,14 +40,14 @@ const AddGuests = ({ handleGuestModal = () => { throw new ReferenceError("handle
     );
 };
 
-const CategorySelector = () => { // will expect value and onChange as params
+export const CategorySelector = ({ custom_tailwind_style = '' }) => { // will expect value and onChange as params
     return (
         <>
             <label htmlFor='category-input' className='font-medium cursor-pointer my-2'>Category</label>
             <select
                 name="Headline"
                 id="category-input"
-                className="mt-0.5 w-full rounded border-gray-200 sm:text-sm md:text-md py-1 dark:border-gray-600 dark:bg-gray-900 dark:text-white"
+                className={`mt-0.5 w-full rounded border-gray-200 sm:text-sm md:text-md py-1 dark:border-gray-600 dark:bg-gray-900 dark:text-white ${custom_tailwind_style}`}
             >
                 <option value="">Select place category</option>
                 <option value="beaches">Beaches</option>
@@ -75,7 +76,7 @@ const FilteredBadge = ({ filter_name = {}, onClickHandler = () => { throw new Re
 
     return (
         <span
-            className="inline-flex items-center justify-center rounded-full border border-gray-300 px-2.5 py-0.5 text-slate-700 dark:text-slate-300"
+            className="inline-flex items-center justify-center rounded-full border border-gray-300 px-2.5 py-0.5 text-slate-700 dark:text-slate-300 shadow-xl"
         >
             <p className="text-sm whitespace-nowrap"><b>{filter_name?.type || "Error:"}:</b> {filter_name?.name || "filter not received!"}</p>
 
@@ -110,6 +111,10 @@ const SearchContainer = ({ isFilterRequired = false }) => {
         const [isGuestModalOpened, setIsGuestModalOpened] = React.useState(false);
         const [appliedFiltersArr, setAppliedFilterArr] = React.useState([{ type: "Category", name: 'Spiritual Places' }, { type: "Check-in", name: "24/8/2025" }, { type: "Check-out", name: "14/9/2025" }, { type: "Safety-Ratings", name: "4+" }, { type: "Water Availability", name: true }, { type: "Free Food Available", name: "No" }]);
 
+        const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
+
+        const handleSidebarStatus = () => setIsSidebarOpen(prev_state => !prev_state);
+
         const handleGuestModal = () => {
             setIsGuestModalOpened(prev => !prev);
         };
@@ -120,38 +125,42 @@ const SearchContainer = ({ isFilterRequired = false }) => {
 
 
                 return (
-                    <div className="search-container my-5 w-full md:p-5">
-                        <div className='w-full min-h-20 border-0 rounded-3xl flex items-center justify-end flex-wrap md:flex-nowrap gap-2'>
-                            {/* Search Bar */}
-                            <div className='hover:bg-gray-200 dark:hover:bg-gray-700 hover:rounded-3xl flex items-start justify-center flex-col py-1 px-2 md:py-2 md:px-3 w-full dark:text-white'>
-                                <SearchBar id_for_input='search-bar-input' labelName='Where' placeholderName='Search Places...' custom_tailwind_style='p-2 outline-0 text-lg' />
+                    <>
+                        <FilterSidebar handleGuestModal={handleGuestModal} isGuestModalOpened={isGuestModalOpened} setIsGuestModalOpened={setIsGuestModalOpened} isOpen={isSidebarOpen} closeSidebar={handleSidebarStatus} clearAppliedFilter={setAppliedFilterArr} />
+                        <div className="search-container my-5 w-full md:p-5">
+                            <div className='w-full min-h-20 border-0 rounded-3xl flex items-center justify-end flex-wrap md:flex-nowrap gap-2'>
+                                {/* Search Bar */}
+                                <div className='hover:bg-gray-200 dark:hover:bg-gray-700 hover:rounded-3xl flex items-start justify-center flex-col py-1 px-2 md:py-2 md:px-3 w-full dark:text-white'>
+                                    <SearchBar id_for_input='search-bar-input' labelName='Where' placeholderName='Search Places...' custom_tailwind_style='p-2 outline-0 text-lg' />
+                                </div>
+                                <div className='md:p-2'>
+                                    <button
+                                        type='button'
+                                        className='flex items-center justify-center gap-1 space-x-2 rounded-md px-3 h-8 text-sm font-bold border bg-white shadow-xl transition-all hover:bg-gray-100 hover:text-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border-gray-300 dark:bg-gray-800 dark:border-slate-500 dark:hover:bg-gray-700 dark:text-white dark:hover:text-gray-200 active:scale-90 duration-200'
+                                        onClick={handleSidebarStatus}
+                                    >
+                                        <CiFilter fontSize={19} fontWeight={'bold'} strokeWidth={1.1} />
+                                        Filters
+                                    </button>
+                                </div>
+                                <div className='md:p-2'>
+                                    <button
+                                        type='button'
+                                        className='flex items-center justify-center gap-1 space-x-2 rounded-md px-3 h-8 text-sm font-bold border bg-white shadow-xl transition-all hover:bg-gray-100 hover:text-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border-gray-300 dark:bg-gray-800 dark:border-slate-500 dark:hover:bg-gray-700 dark:text-white dark:hover:text-gray-200 active:scale-90 duration-200'
+                                    >
+                                        <FaSearch />
+                                        Search
+                                    </button>
+                                </div>
                             </div>
-                            <div className='md:p-2'>
-                                <button
-                                    type='button'
-                                    className='flex items-center justify-center gap-1 space-x-2 rounded-md px-3 h-8 text-sm font-bold border bg-white shadow-xs transition-all hover:bg-gray-100 hover:text-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border-gray-300 dark:bg-gray-800 dark:border-slate-500 dark:hover:bg-gray-700 dark:text-white dark:hover:text-gray-200 active:scale-90 duration-200'
-                                >
-                                    <CiFilter fontSize={19} fontWeight={'bold'} strokeWidth={1.1} /> {/* icon size controlled via class */}
-                                    Filters
-                                </button>
-                            </div>
-                            <div className='md:p-2'>
-                                <button
-                                    type='button'
-                                    className='flex items-center justify-center gap-1 space-x-2 rounded-md px-3 h-8 text-sm font-bold border bg-white shadow-xs transition-all hover:bg-gray-100 hover:text-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border-gray-300 dark:bg-gray-800 dark:border-slate-500 dark:hover:bg-gray-700 dark:text-white dark:hover:text-gray-200 active:scale-90 duration-200'
-                                >
-                                    <FaSearch />
-                                    Search
-                                </button>
-                            </div>
-                        </div>
-                        {/* filter badges container */}
-                        <div className="applied-filters flex flex-wrap gap-2 mt-3">
-                            {appliedFiltersArr.map((each_filter_applied, index) => <FilteredBadge key={each_filter_applied + index} filter_name={each_filter_applied} />)}
+                            {/* filter badges container */}
+                            <div className="applied-filters flex flex-wrap gap-2 mt-3">
+                                {appliedFiltersArr.map((each_filter_applied, index) => <FilteredBadge key={each_filter_applied + index} filter_name={each_filter_applied} />)}
 
-                            {appliedFiltersArr.length > 0 && <button type='button' className='inline-block mx-2 rounded-md border-gray-300 bg-white hover:bg-slate-100 active:bg-slate-100 text-xs font-medium py-1 px-2' onClick={() => setAppliedFilterArr([])}>Clear all</button>}
+                                {appliedFiltersArr.length > 0 && <button type='button' className='inline-block mx-2 rounded-md border-gray-300 bg-white hover:bg-slate-100 active:bg-slate-100 text-xs font-medium py-1 px-2' onClick={() => setAppliedFilterArr([])}>Clear all</button>}
+                            </div>
                         </div>
-                    </div>
+                    </>
                 );
 
             } catch (error) {
