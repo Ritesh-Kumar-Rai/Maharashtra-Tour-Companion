@@ -5,6 +5,8 @@ import { Route, Routes } from 'react-router'
 import Home from './pages/Home'
 import Notices from './pages/Notices';
 import PageNotFound from './pages/PageNotFound';
+import Explore from './pages/Explore'
+import ExplorePage from './pages/ExplorePage'
 
 
 function App() {
@@ -15,6 +17,8 @@ function App() {
       <main className='min-h-screen p-4 dark:bg-gray-800 scroll-smooth'>
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/explore' element={<Explore />} />
+          <Route path='/explore2' element={<ExplorePage />} />
           <Route path='/notices' element={<Notices />} />
           <Route path='/*' element={<PageNotFound />} />
         </Routes>

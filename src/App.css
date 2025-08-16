@@ -28,3 +28,28 @@
 .banner:hover > img {
   transform: scale(1.1);
 }
+
+/* for map [temporary]*/
+.embed-map-responsive {
+  position: relative;
+  text-align: right;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 31.645569620253166%;
+}
+.embed-map-container {
+  overflow: hidden;
+  background: none !important;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.embed-map-frame {
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

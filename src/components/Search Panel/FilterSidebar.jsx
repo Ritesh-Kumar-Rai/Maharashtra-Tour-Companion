@@ -1,6 +1,6 @@
 import { IoMdClose } from "react-icons/io";
 import { FcClearFilters } from "react-icons/fc";
-import { AddGuests, CategorySelector, DateInput } from "./SearchContainer";
+import { AddGuests, CategorySelector, DateInput, MediaTypeSelector } from "./SearchContainer";
 
 
 const FilterSidebar = ({ handleGuestModal, isGuestModalOpened, setIsGuestModalOpened, isOpen, closeSidebar, clearAppliedFilter }) => {
@@ -41,6 +41,9 @@ const FilterSidebar = ({ handleGuestModal, isGuestModalOpened, setIsGuestModalOp
 
                 <div className="form-control mb-6 w-full flex flex-col gap-2">
                     <CategorySelector custom_tailwind_style="px-4 py-3 border-1 border-gray-300" />
+                </div>
+                <div className="form-control mb-6 w-full flex flex-col gap-2">
+                    <MediaTypeSelector custom_tailwind_style="px-4 py-3 border-1 border-gray-300" />
                 </div>
 
                 <div className="flex items-center justify-end">

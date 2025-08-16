@@ -66,6 +66,23 @@ export const CategorySelector = ({ custom_tailwind_style = '' }) => { // will ex
         </>
     );
 };
+export const MediaTypeSelector = ({ custom_tailwind_style = '' }) => { // will expect value and onChange as params
+    return (
+        <>
+            <label htmlFor='media-type-selector-input' className='font-medium cursor-pointer my-2'>Media Type</label>
+            <select
+                name="media-type-selector"
+                id="media-type-selector-input"
+                className={`mt-0.5 w-full rounded border-gray-200 sm:text-sm md:text-md py-1 dark:border-gray-600 dark:bg-gray-900 dark:text-white ${custom_tailwind_style}`}
+            >
+                <option value="">All Media</option>
+                <option value="video-type">Video</option>
+                <option value="audio-type">Audio</option>
+                <option value="images-type">Images</option>
+            </select>
+        </>
+    );
+};
 
 const FilteredBadge = ({ filter_name = {}, onClickHandler = () => { throw new ReferenceError("onClickHandler expected as param but didn't got one"); } }) => {
     try {

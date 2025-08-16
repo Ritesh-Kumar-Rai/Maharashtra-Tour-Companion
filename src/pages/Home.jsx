@@ -28,7 +28,6 @@ const Home = () => {
             <hr className='my-10 border-gray-200 dark:border-gray-900' />
             <SearchContainer />
             {/* <SearchPanel2 /> */}
-            <SearchContainer isFilterRequired />
             <ExploreCategories />
             <section className='my-10 py-10 px-1 md:px-16 bg-white dark:bg-gray-900 rounded-2xl'>
                 <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-amber-500 dark:text-amber-400">Popular Places</h2>
