@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 // ExploreCategories.jsx
 const categories = [
     { name: "Beaches", image: "https://mtdc-main.s3.ap-south-1.amazonaws.com/1685455023256Beach.png", value: "beaches" },
@@ -14,7 +16,37 @@ const categories = [
     { name: "Forts", image: "https://mtdc-main.s3.ap-south-1.amazonaws.com/1685463903103Fort.png", value: "forts" },
 ];
 
-export default function ExploreCategories() {
+export default function ExploreCategories({ isSwiper = false }) {
+
+    if (isSwiper) {
+        return (
+            <section className="text-gray-800 py-6 md:px-4">
+                <h2 className="text-xl font-semibold dark:text-gray-300 mb-4">Explore by Category</h2>
+                <div className="flex space-x-4 overflow-x-auto scroll-smooth scrollbar-hidden">
+                    {categories.map((cat) => (
+                        <Link
+                            key={cat.name}
+                            to={`/category/${cat.name.toLowerCase()}`}
+                            className="relative flex-grow-1 group border-2 border-transparent outline-2 outline-amber-500 m-1 rounded-xl overflow-hidden h-12 min-w-fit w-max flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl focus:scale-[1.02] focus:shadow-2xl"
+                        >
+                            <img
+                                src={cat.image}
+                                alt={cat.name}
+                                className="w-full h-full absolute z-0 object-cover group-hover:scale-105 group-hover:brightness-90 transition-all duration-500"
+                                loading="lazy"
+                            />
+                            <div className="relative inset-0 bg-transparent bg-opacity-30 group-hover:bg-opacity-40 transition-all duration-500 flex items-center justify-center">
+                                <span className="block text-white text-sm text-nowrap font-semibold text-center px-4 drop-shadow-lg">
+                                    {cat.name}
+                                </span>
+                            </div>
+                        </Link>
+                    ))}
+                </div>
+            </section>
+        );
+    }
+
     return (
         <section className="py-10 px-6 md:px-16 bg-white dark:bg-black rounded-2xl">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-amber-500 dark:text-amber-400">

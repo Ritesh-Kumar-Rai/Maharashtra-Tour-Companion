@@ -40,3 +40,8 @@ button:disabled {
 .active {
   @apply text-amber-700 font-medium;
 }
+
+.scrollbar-hidden::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
