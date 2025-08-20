@@ -32,9 +32,10 @@ function Header() {
                             <li><NavLink to={'/explore'} className={({ isActive }) => `text-gray-700 transition hover:text-amber-900 dark:text-white dark:hover:text-white/75 ${isActive && 'active'}`} >Explore</NavLink></li>
                             <li><NavLink to={'/hospitality'} className={({ isActive }) => `text-gray-700 transition hover:text-amber-900 dark:text-white dark:hover:text-white/75 ${isActive && 'active'}`} >Hospitality</NavLink></li>
                             <li><NavLink to={'/safety&utilities'} className={({ isActive }) => `text-gray-700 transition hover:text-amber-900 dark:text-white dark:hover:text-white/75 ${isActive && 'active'}`} >Safety & Utilities</NavLink></li>
+                            <li><NavLink to={'/saved-places'} className={({ isActive }) => `text-gray-700 transition hover:text-amber-900 dark:text-white dark:hover:text-white/75 ${isActive && 'active'}`} >Saved Places</NavLink></li>
+                            {/* <li><NavLink to={'/ev-charging-stations'} className={({ isActive }) => `text-gray-700 transition hover:text-amber-900 dark:text-white dark:hover:text-white/75 ${isActive && 'active'}`} >EV Charging Stations</NavLink></li> */}
                             <li><NavLink to={'/notices'} className={({ isActive }) => `text-gray-700 transition hover:text-amber-900 dark:text-white dark:hover:text-white/75 ${isActive && 'active'}`} >Notices</NavLink></li>
                             <li><NavLink to={'/about-us'} className={({ isActive }) => `text-gray-700 transition hover:text-amber-900 dark:text-white dark:hover:text-white/75 ${isActive && 'active'}`} >About Us</NavLink></li>
-                            <li><NavLink to={'/saved-places'} className={({ isActive }) => `text-gray-700 transition hover:text-amber-900 dark:text-white dark:hover:text-white/75 ${isActive && 'active'}`} >Saved Places</NavLink></li>
                         </ul>
                     </nav>
                     {/* language, theme and login element */}
