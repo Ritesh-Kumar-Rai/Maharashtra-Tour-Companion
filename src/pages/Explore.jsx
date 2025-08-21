@@ -1,8 +1,9 @@
+import { useState } from "react";
 import { Link } from "react-router";
 import ExploreCategories from "../components/ExploreCategories";
 import SearchContainer from "../components/Search Panel/SearchContainer";
 import PlaceCard from "../components/PlaceCard";
-import { useState } from "react";
+import { CgArrowLongRight } from "react-icons/cg";
 
 const Explore = () => {
 
@@ -13,6 +14,8 @@ const Explore = () => {
             isAdding ? [...prev, place] : prev.filter((p) => p.id !== place.id)
         );
     };
+
+    const [selected_category, setSelected_Category] = useState('');
 
     const trendingPlaces = [
         {
@@ -270,7 +273,7 @@ const Explore = () => {
     return (
         <>
             <div className="w-full h-96 rounded-2xl overflow-hidden shadow-2xl">
-                <div class="embed-map-responsive"><div class="embed-map-container"><iframe class="embed-map-frame" frameborder="0" scrolling="no" marginheight="0" marginWidth="0" width='100%' height='100%' src="https://maps.google.com/maps?height=300&hl=en&q=maharashtra&t=p&z=14&ie=UTF8&iwloc=B&output=embed"></iframe><a href="https://cartoongames.io" style={{ fontSize: '2px', color: 'gray', position: 'absolute', bottom: 0, left: 0, zIndex: 1, maxHeight: '10px', overflow: 'hidden' }}>Cartoon Games</a><a href="https://heygames.org" style={{ fontSize: '2px !important', color: 'gray !important', position: 'absolute', bottom: 0, left: 0, zIndex: 1, maxHeight: '10px', overflow: 'hidden' }}>HeyGames</a><a href="https://map-embed.org" style={{ fontSize: '2px', color: 'gray', position: 'absolute', bottom: 0, left: 0, zIndex: 1, maxHeight: '10px', overflow: 'hidden' }}>google maps generator</a></div></div>
+                <div class="embed-map-responsive"><div class="embed-map-container"><iframe class="embed-map-frame" frameborder="0" scrolling="no" marginheight="0" marginWidth="0" width='100%' height='100%' src="https://maps.google.com/maps?height=300&hl=en&q=Maharashtra%2C%20iskcon%20juhu&t=p&z=14&ie=UTF8&iwloc=B&output=embed"></iframe><a href="https://cartoongames.io" style={{ fontSize: '2px', color: 'gray', position: 'absolute', bottom: 0, left: 0, zIndex: 1, maxHeight: '10px', overflow: 'hidden' }}>Cartoon Games</a><a href="https://heygames.org" style={{ fontSize: '2px !important', color: 'gray !important', position: 'absolute', bottom: 0, left: 0, zIndex: 1, maxHeight: '10px', overflow: 'hidden' }}>HeyGames</a><a href="https://map-embed.org" style={{ fontSize: '2px', color: 'gray', position: 'absolute', bottom: 0, left: 0, zIndex: 1, maxHeight: '10px', overflow: 'hidden' }}>google maps generator</a></div></div>
             </div>
 
             <hr className='my-10 border-gray-200 dark:border-gray-900' />
@@ -281,20 +284,24 @@ const Explore = () => {
             <hr className='my-10 border-gray-200 dark:border-gray-900' />
 
             {/* Category Pills */}
-            <ExploreCategories isSwiper={true} />
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <ExploreCategories isSwiper={true} selectedCategory={selected_category} setCategorySelection={setSelected_Category} />
+            <div className="py-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {trendingPlaces.map((place) => (
                     <PlaceCard key={place.id} place={place} onBookmark={handleBookmark} />
                 ))}
-                {trendingPlaces.map((place) => (
+                {(selected_category.length > 2) && trendingPlaces.map((place) => (
                     <PlaceCard key={place.id} place={place} onBookmark={handleBookmark} />
                 ))}
-                {trendingPlaces.map((place) => (
+                {(selected_category.length > 2) && trendingPlaces.map((place) => (
                     <PlaceCard key={place.id} place={place} onBookmark={handleBookmark} />
                 ))}
-                {trendingPlaces.map((place) => (
+                {(selected_category.length > 2) && trendingPlaces.map((place) => (
                     <PlaceCard key={place.id} place={place} onBookmark={handleBookmark} />
                 ))}
+                {/* view more button for selected category */}
+                {(selected_category.length > 2) && <Link to={`/search?category=${selected_category}`} type="button" role="link" className="flex items-center justify-center gap-1 w-2xs aspect-video m-auto bg-blue-100 hover:bg-orange-50 border-2 border-transparent hover:border-amber-500 transition duration-300 font-medium rounded-md shadow-lg">
+                    View More <CgArrowLongRight fontSize={'x-large'} strokeWidth={0.9} />
+                </Link>}
             </div>
 
             {/* Curated Lists */}

@@ -16,7 +16,7 @@ const categories = [
     { name: "Forts", image: "https://mtdc-main.s3.ap-south-1.amazonaws.com/1685463903103Fort.png", value: "forts" },
 ];
 
-export default function ExploreCategories({ isSwiper = false }) {
+export default function ExploreCategories({ isSwiper = false, selectedCategory = '', setCategorySelection = () => { throw new ReferenceError('expected `setCategorySelection` method but never get it!') } }) {
 
     if (isSwiper) {
         return (
@@ -26,8 +26,9 @@ export default function ExploreCategories({ isSwiper = false }) {
                     {categories.map((cat) => (
                         <Link
                             key={cat.name}
-                            to={`/category/${cat.name.toLowerCase()}`}
-                            className="relative flex-grow-1 group border-2 border-transparent outline-2 outline-amber-500 m-1 rounded-xl overflow-hidden h-12 min-w-fit w-max flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl focus:scale-[1.02] focus:shadow-2xl"
+                            // to={`/category/${cat.name.toLowerCase()}`}
+                            className={`relative flex-grow-1 group border-2 border-transparent outline-2 ${selectedCategory === cat.name ? 'outline-amber-500' : 'outline-transparent'} m-1 rounded-xl overflow-hidden h-12 min-w-fit w-max flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl focus:scale-[1.02] focus:shadow-2xl`}
+                            onClick={() => setCategorySelection(prev => (prev === cat.name) ? prev = '' : prev = cat.name)}
                         >
                             <img
                                 src={cat.image}
