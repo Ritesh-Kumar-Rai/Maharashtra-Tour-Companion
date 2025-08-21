@@ -7,6 +7,7 @@ import Notices from './pages/Notices';
 import PageNotFound from './pages/PageNotFound';
 import Explore from './pages/Explore'
 import ExplorePage from './pages/ExplorePage'
+import Search from './pages/Search'
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/explore' element={<Explore />} />
           <Route path='/explore2' element={<ExplorePage />} />
+          <Route path='/search' element={<Search />} />
           <Route path='/notices' element={<Notices />} />
           <Route path='/*' element={<PageNotFound />} />
         </Routes>
