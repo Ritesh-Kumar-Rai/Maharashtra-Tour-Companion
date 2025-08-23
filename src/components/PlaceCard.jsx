@@ -35,13 +35,13 @@ const PlaceCard = ({ place, onBookmark }) => {
     };
 
     return (
-        <div className="relative bg-white dark:bg-zinc-900  rounded-xl shadow-md hover:shadow-lg transition duration-300 overflow-hidden group">
+        <div className="relative bg-white min-w-80 md:min-w-lg md:w-auto dark:bg-zinc-900  rounded-xl shadow-md hover:shadow-lg transition duration-300 overflow-hidden group">
             {/* Image */}
-            <Link to={`/place/${place.id}`}>
+            <Link className="block w-full h-48 overflow-hidden" to={`/place/${place.id}`}>
                 <img
                     src={place.image}
                     alt={place.name}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 bg-blue-900"
                 />
             </Link>
 
