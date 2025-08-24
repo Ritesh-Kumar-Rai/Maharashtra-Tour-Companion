@@ -5,6 +5,7 @@ import Pagination from "../components/Pagination";
 import SearchContainer from "../components/Search Panel/SearchContainer";
 import ToggleButton from "../components/ToggleButton";
 import PlaceCard from "../components/PlaceCard";
+import BreadCrumb from "../components/BreadCrumb";
 
 const Search = () => {
 
@@ -80,10 +81,13 @@ const Search = () => {
 
     return (
         <>
+            <div className="my-2 py-0 px-2">
+                <BreadCrumb />
+            </div>
             <SearchContainer isFilterRequired />
             <hr className="my-10 border-gray-200 dark:border-gray-900" />
-            <div className="flex items-center justify-between py-8">
-                <div className="flex items-center gap-2">
+            <div className="flex items-center justify-end py-8">
+                {/* <div className="flex items-center gap-2">
                     <button
                         className="py-1 px-2 inline-block rounded-lg bg-white dark:bg-gray-600 dark:text-white transition hover:bg-gray-200 active:bg-gray-500 border-1 border-zinc-200">Image</button>
                     <button
@@ -93,7 +97,7 @@ const Search = () => {
                     <button
                         className="py-1 px-2 inline-block rounded-lg bg-white dark:bg-gray-600 dark:text-white transition hover:bg-gray-200 active:bg-gray-500 border-1 border-zinc-200">All Media Type</button>
 
-                </div>
+                </div> */}
                 <ToggleButton labelName="View on Map" afterCheckedLabelName="Hide Map" toggleInput={toggleInput} setToggleInput={setToggleInput} />
             </div>
             <section className="relatives flex gap-2 min-h-[90vh] h-full w-full">
@@ -105,7 +109,7 @@ const Search = () => {
                     </div>
                     <Pagination />
                 </div>
-                {toggleInput && <div className="w-full 2xl:w-[50%] min-h-[30%] h-full xl:h-[85vh] fixed top-0 xl:top-30 right-0 xl:sticky z-10 shadow-md border-2 border-zinc-500 backdrop-blur-sm rounded-md p-1">
+                {toggleInput && <div className="w-full 2xl:w-[50%] min-h-[30%] h-full xl:h-[85vh] fixed top-0 xl:top-30 right-0 xl:sticky z-20 xl:z-10 shadow-md border-2 border-zinc-500 backdrop-blur-sm rounded-md p-1">
                     <button type="button" aria-label="close map" className="backdrop-blur-md w-fit h-fit rounded-md absolute top-1 right-1 z-10" onClick={() => setToggleInput(p => !p)}><IoMdClose size={40} /></button>
                     <div id="map" className="w-full h-full z-[2]">
                         {/* The Leaflet Map will render here */}

@@ -17,7 +17,7 @@ function Header() {
     }, [isDarkThemed]);
 
     return (
-        <header className='w-full max-w-screen backdrop-blur-md sticky top-0 shadow-md border-b-2 border-transparent dark:border-slate-600 z-10'>
+        <header className='w-full max-w-screen backdrop-blur-md sticky top-0 shadow-md border-b-2 border-transparent dark:border-slate-600 z-20'>
             <div className='w-full flex items-center justify-between gap-20 p-2 md:p-4'>
                 {/* logo */}
                 <div className="logo min-w-[200px]">
